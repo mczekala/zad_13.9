@@ -8,9 +8,11 @@ function start() {
     console.log("Odebrano zapytanie.".green);
     console.log("Zapytanie " + request.url + " odebrane.");
 
-    response.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
+    response.writeHead(200, {
+      "Content-Type": "text/plain; charset=utf-8"
+    });
 
-    switch(request.url) { // switch rozróżniający zapytania
+    switch (request.url) { // switch rozróżniający zapytania
       case '/':
       case '/start':
         handlers.welcome(request, response);
@@ -18,7 +20,7 @@ function start() {
       case '/upload':
         handlers.upload(request, response);
         break;
-      case '/show':
+      case '/show?.':
         handlers.show(request, response);
         break;
       default:
