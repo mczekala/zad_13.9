@@ -8,9 +8,8 @@ exports.upload = function (request, response) {
     response.writeHead(200, {
       "Content-Type": "text/html"
     });
-
     response.write("received image:<br/>");
-    response.write("<img src='/show?files.upload.name' />");
+    response.write("<img src='/show?name=" + files.upload.name + "'/>");
     response.end();
   });
 };
@@ -33,12 +32,12 @@ exports.error = function (request, response) {
   response.end();
 };
 exports.show = function (request, response) {
-  console.log(request);
-  fs.readFile("test.png", "binary", function (error, file) {
-    response.writeHead(200, {
-      "Content-Type": "image/png"
+  fs.readFile(request.url.slice(11), "binary",
+    function (error, file) {
+      response.writeHead(200, {
+        "Content-Type": "image/png"
+      });
+      response.write(file, "binary");
+      response.end();
     });
-    response.write(file, "binary");
-    response.end();
-  });
 };
